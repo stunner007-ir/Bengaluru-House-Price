@@ -29,6 +29,8 @@ This command will spin up 4 Docker containers on your machine, each for a differ
 - Scheduler: The Airflow component responsible for monitoring and triggering tasks
 - Triggerer: The Airflow component responsible for triggering deferred tasks
 
+# Create .env file and add your kaggle credentials
+
 2. Verify that all 4 Docker containers were created by running 'docker ps'.
 
 Note: Running 'astro dev start' will start your project with the Airflow Webserver exposed at port 8080 and Postgres exposed at port 5432. If you already have either of those ports allocated, you can either [stop your existing Docker containers or change the port](https://www.astronomer.io/docs/astro/cli/troubleshoot-locally#ports-are-not-available-for-my-local-airflow-webserver).
