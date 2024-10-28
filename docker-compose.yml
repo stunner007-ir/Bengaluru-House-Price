@@ -1,0 +1,43 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
+
+  webserver:
+    image: quay.io/astronomer/astro-runtime:7.0.0
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - KAGGLE_USERNAME=ishuraj0071414
+      - KAGGLE_KEY=5b62b7bd94bb9c82ade0937b096d6e47
+    volumes:
+      - ./dags:/usr/local/airflow/dags
+      - ./plugins:/usr/local/airflow/plugins
+      - ./include:/usr/local/airflow/include
+      - ./requirements.txt:/requirements.txt
+      - ./data:/usr/local/airflow/data
+    ports:
+      - "8080:8080"
+    command: webserver
+
+  scheduler:
+    image: quay.io/astronomer/astro-runtime:7.0.0
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - KAGGLE_USERNAME=ishuraj0071414
+      - KAGGLE_KEY=5b62b7bd94bb9c82ade0937b096d6e47
+    volumes:
+      - ./dags:/usr/local/airflow/dags
+      - ./plugins:/usr/local/airflow/plugins
+      - ./include:/usr/local/airflow/include
+      - ./requirements.txt:/requirements.txt
+      - ./data:/usr/local/airflow/data
+    command: scheduler
