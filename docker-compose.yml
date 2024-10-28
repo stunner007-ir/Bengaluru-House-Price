@@ -15,8 +15,6 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
-      - KAGGLE_USERNAME=ishuraj0071414
-      - KAGGLE_KEY=5b62b7bd94bb9c82ade0937b096d6e47
     volumes:
       - ./dags:/usr/local/airflow/dags
       - ./plugins:/usr/local/airflow/plugins
@@ -32,8 +30,6 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
-      - KAGGLE_USERNAME=ishuraj0071414
-      - KAGGLE_KEY=5b62b7bd94bb9c82ade0937b096d6e47
     volumes:
       - ./dags:/usr/local/airflow/dags
       - ./plugins:/usr/local/airflow/plugins
